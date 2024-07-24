@@ -1,14 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import styles from "./index.module.css";
 
-
 const Header = () => {
-  return(
+  return (
     <header className={styles.header}>
-      <a href="/" className={styles.logoLink}>
-        <Image 
+      <Link href="/" className={styles.logoLink}>
+        <Image
           src="/logo.svg"
           alt="SIMPLE"
           className={styles.logo}
@@ -16,9 +16,16 @@ const Header = () => {
           height={133}
           priority
         />
-      </a>
+      </Link>
+      <nav>
+        <ul className={styles.items}>
+          <li>
+            <Link href="/members">メンバー</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
-  )
+  );
 };
 
 export default Header;
