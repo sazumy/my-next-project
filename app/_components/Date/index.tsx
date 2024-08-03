@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./index.module.css";
 
 type Props = {
-  date: string;
+  date?: string;
 };
 
 const Date = ({ date }: Props) => {
