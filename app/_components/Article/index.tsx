@@ -21,6 +21,7 @@ const Article = ({ data }: Props) => {
         <Image
           src={data.thumbnail.url}
           alt={data.title}
+          className={styles.thumbnail}
           width={data.thumbnail.width}
           height={data.thumbnail.height}
         />
