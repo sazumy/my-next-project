@@ -6,9 +6,14 @@ import { Span } from "next/dist/trace";
 type Props = {
   totalCount: number;
   current?: number;
+  basePath?: string;
 };
 
-export const Pagination = ({ totalCount, current = 1 }: Props) => {
+export const Pagination = ({
+  totalCount,
+  current = 1,
+  basePath = "/news",
+}: Props) => {
   const pages = Array.from(
     { length: Math.ceil(totalCount / NEWS_LIST_LIMIT) },
     (_, i) => i + 1
@@ -19,7 +24,7 @@ export const Pagination = ({ totalCount, current = 1 }: Props) => {
         {pages.map((page) => (
           <li key={page} className={styles.list}>
             {current !== page ? (
-              <Link href={`/news/p/${page}`} className={styles.item}>
+              <Link href={`${basePath}/p/${page}`} className={styles.item}>
                 {page}
               </Link>
             ) : (
