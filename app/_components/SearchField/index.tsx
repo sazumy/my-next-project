@@ -1,15 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./index.module.css";
+import { Suspense } from "react";
 
-export const SearchField = () => {
+const SearchFieldComponent = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const q = event.currentTarget.elements.namedItem("q");
+
     if (q instanceof HTMLInputElement) {
       const params = new URLSearchParams();
       params.set("q", q.value.trim());
@@ -24,11 +27,20 @@ export const SearchField = () => {
         <input
           type="text"
           name="q"
+          defaultValue={searchParams.get("q") ?? undefined}
           placeholder="キーワードを検索"
           className={styles.searchInput}
         />
       </label>
     </form>
+  );
+};
+
+export const SearchField = () => {
+  return (
+    <Suspense>
+      <SearchFieldComponent />
+    </Suspense>
   );
 };
 
