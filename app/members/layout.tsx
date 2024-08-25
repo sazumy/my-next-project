@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const RootLayout = ({ children }: Props) => {
+const RootLayout = ({ children }: Props) => {
   return (
     <>
       <Hero title="Members" sub="メンバー" />
