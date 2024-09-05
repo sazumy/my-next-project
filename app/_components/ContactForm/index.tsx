@@ -1,8 +1,31 @@
+"use client";
+
+import { createContactData } from "@/app/_actions/contact";
+import { useFormState } from "react-dom";
 import styles from "./index.module.css";
 
+const initialState = {
+  status: "",
+  message: "",
+};
+
 export default function ContactForm() {
+  // NOTE: useFormState は第一引数にServerActionsを、第二引数にServerActionsから受け取る初期値を指定できる.
+  const [state, formAction] = useFormState(createContactData, initialState);
+  console.log(state);
+
+  if (state.status === "success") {
+    return (
+      <p className={styles.success}>
+        お問合せいただき、ありがとうございます。
+        <br />
+        お返事まで今しばらくお待ちください
+      </p>
+    );
+  }
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} action={formAction}>
       <div className={styles.horizontal}>
         <div className={styles.item}>
           <label className={styles.label} htmlFor="lastname">
@@ -60,6 +83,9 @@ export default function ContactForm() {
       </div>
 
       <div className={styles.actions}>
+        {state.status === "error" && (
+          <p className={styles.error}>{state.message}</p>
+        )}
         <input type="submit" value="送信する" className={styles.button} />
       </div>
     </form>
