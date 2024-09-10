@@ -4,7 +4,7 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL("https://nextjs-website-sample-sigma.vercel.app/"),
   title: {
     template: "%s | シンプルなコーポレートサイト", // %s にページタイトルが入る
     default: "シンプルなコーポレートサイト",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     images: ["/ogp.png"],
   },
   alternates: {
-    canonical: "http://localhost:3000",
+    canonical: "https://nextjs-website-sample-sigma.vercel.app/",
   },
 };
 

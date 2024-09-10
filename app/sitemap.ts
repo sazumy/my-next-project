@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next";
 import { getAllNewsList, getAllCategoryList } from "./_libs/microcms";
 
-const buildUrl = (path?: string) => `http://localhost:3000${path ?? ""}`;
+const buildUrl = (path?: string) =>
+  `https://nextjs-website-sample-sigma.vercel.app/${path ?? ""}`;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const newsContents = await getAllNewsList();
@@ -12,10 +13,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: content.revisedAt,
   }));
 
-  const categoryUrls: MetadataRoute.Sitemap = categoryContents.map((content) => ({
-    url: buildUrl(`/news/category/${content.id}`),
-    lastModified: content.revisedAt,
-  }));
+  const categoryUrls: MetadataRoute.Sitemap = categoryContents.map(
+    (content) => ({
+      url: buildUrl(`/news/category/${content.id}`),
+      lastModified: content.revisedAt,
+    })
+  );
 
   const now = new Date();
 
